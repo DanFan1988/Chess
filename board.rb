@@ -22,10 +22,13 @@ class Board
   def checkmate?(color)
     return false unless in_check?(color)
 
-    our_pieces = pieces.select { |piece| piece.color == color }
-    our_pieces.all? do |piece|
+    pieces.select { |piece| piece.color == color }.all? do |piece|
       piece.valid_moves.empty?
     end
+  end
+
+  def pieces
+    @grid.flatten.compact
   end
 
   def within_bounds?(x, y)
@@ -78,39 +81,26 @@ class Board
 
   def dup
     duped_board = Board.new
-    duped_array = Array.new(8) { Array.new(8) }
-    duped_array.each_with_index do |row, row_idx|
-      row.each_index do |col_idx|
-        next if @grid[row_idx][col_idx].nil?
-        clr = @grid[row_idx][col_idx].color
-        piece = @grid[row_idx][col_idx].class
-        duped_piece = piece.new(duped_board, [row_idx, col_idx], clr)
-        duped_array[row_idx][col_idx] = duped_piece
-      end
+
+    pieces.each do |piece|
+      piece.class.new(duped_board, piece.position, piece.color)
     end
-    duped_board.grid = duped_array
     duped_board
   end
 
   private
 
   def find_king_pos(color)
-    @grid.each do |row|
-      row.each do |tile|
-        return tile.position if (tile.is_a?(King) && tile.color == color)
-      end
+    pieces.each do |piece|
+        return piece.position if (piece.is_a?(King) && piece.color == color)
     end
-  end
-
-  def pieces
-    @grid.flatten.compact
   end
 
   def possible_opposing_moves(color)
-    selected_array_pieces = pieces.select do |piece|
+    opposing_pieces = pieces.select do |piece|
       piece.color != color
     end
-    possible_moves = selected_array_pieces.inject([]) do |result, piece|
+    possible_moves = opposing_pieces.inject([]) do |result, piece|
       result.concat(piece.moves)
     end
     possible_moves.uniq
