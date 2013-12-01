@@ -17,9 +17,7 @@ class Piece
   attr_reader :color
 
   def initialize(grid, position, color)
-    @grid = grid
-    @position = position
-    @color = color
+    @grid, @position, @color = grid, position, color
     @unicode_char
   end
 
@@ -36,6 +34,5 @@ class Piece
     end
     valids
   end
-
 end
 

@@ -10,7 +10,7 @@ class Game
     current_player = player1
 
     until @board.checkmate?(current_player.color)
-      puts "#{current_player.color}'s Turn \n\n"
+      puts "#{current_player.color.capitalize}'s Turn \n\n"
 
       begin
         @board.display_grid
@@ -27,7 +27,7 @@ class Game
 
       current_player = current_player == player1 ? player2 : player1
     end
-    puts "#{current_player.color} won!"
+    puts "#{current_player.color.capitalize} won!"
   end
 
   def check_move_validity(start_pos, current_player)

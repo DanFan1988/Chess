@@ -41,11 +41,11 @@ class Board
     @grid.each_with_index do |row, index|
       print "#{index}  "
       row.each_with_index do |tile, idx|
-        bg_color = (idx.odd? && index.odd?) || (idx.even? && index.even?) ? :black : :white
+        bg_color = (idx.odd? && index.odd?) || (idx.even? && index.even?) ? :red : :white
         if tile.nil?
-          print "  ".colorize(:color => :blue, :background => bg_color)
+          print "  ".colorize(:color => :black, :background => bg_color)
         else
-          print "#{tile.render_unicode} ".colorize(:color => :blue, :background => bg_color)
+          print "#{tile.render_unicode} ".colorize(:color => :black, :background => bg_color)
         end
       end
       puts
