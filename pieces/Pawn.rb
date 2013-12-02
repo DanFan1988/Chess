@@ -28,7 +28,6 @@ class Pawn < Piece
     @unicode_char = @color == "black" ? "♟" : "♙"
   end
 
-
   def moves
     possible_moves = []
 

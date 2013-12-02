@@ -1,4 +1,4 @@
-require_relative 'piece.rb'
+require_relative 'piece'
 
 class SlidingPieces < Piece
 
@@ -10,7 +10,6 @@ class SlidingPieces < Piece
     end
     possible_moves
   end
-
 
   def single_direction_moves(move_dir)
     one_direction_moves = []

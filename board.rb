@@ -1,8 +1,8 @@
 # encoding: utf-8
 require_relative 'pieces/pawn'
 require_relative 'pieces'
-require 'colorize'
 require_relative 'exceptions'
+require 'colorize'
 
 class Board
 
