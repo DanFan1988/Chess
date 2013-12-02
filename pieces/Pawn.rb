@@ -1,6 +1,5 @@
 # encoding: utf-8
-require './piece.rb'
-require 'debugger'
+require_relative 'piece'
 
 class Pawn < Piece
   attr_accessor :unicode_char, :position

@@ -1,9 +1,8 @@
 # encoding: utf-8
-require './pawn'
-require './steppingpieces'
-require './slidingpieces'
+require_relative 'pieces/pawn'
+require_relative 'pieces'
 require 'colorize'
-require './exceptions'
+require_relative 'exceptions'
 
 class Board
 
